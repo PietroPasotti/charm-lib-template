@@ -30,7 +30,7 @@ echo "registering lib $LIB_NAME"
 charmcraft create-lib "$LIB_NAME"  # register the lib to that charm
 touch  "./$LIB_NAME.py" # create the source file for the lib
 
-LIBID_RAW=$(cat "./lib/charm/$CHARM_NAME/v0/$LIB_NAME.py" | grep LIBID)
+LIBID_RAW=$(cat "./lib/charms/$CHARM_NAME/v0/$LIB_NAME.py" | grep LIBID)
 LIBID=${a#*LIBID = }  # extract LIBID
 
 fill_in "\$LIBID" "$LIBID" "lib_template.jinja"

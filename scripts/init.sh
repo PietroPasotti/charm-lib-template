@@ -35,6 +35,6 @@ LIBID=${a#*LIBID = }  # extract LIBID
 
 fill_in "\$LIBID" "$LIBID" "lib_template.jinja"
 
-rm "./lib/charm/$CHARM_NAME/v0/$LIB_NAME.py" # get rid of the lib file
+rm "./lib/charms/$CHARM_NAME/v0/$LIB_NAME.py" # get rid of the lib file
 
 echo "lib ready at lib/charms/$CHARM_NAME/v0/$LIB_NAME! Happy coding."

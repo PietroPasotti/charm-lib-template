@@ -1,27 +1,26 @@
 #!/usr/bin/env bash
-export LIB_NAME="TEMPLATE: FILL THIS IN" # TODO: TEMPLATE - set lib name
-charmcraft register "$LIB_NAME"  # create the 'charm' placeholder
-touch "$LIB_NAME.py" # create the source file for the lib
 
+export LIB_NAME=$1
+
+charmcraft register "$LIB_NAME"  # create the 'charm' placeholder
 charmcraft create_lib "$LIB_NAME"  # register the lib to that charm
-LIBID_RAW=$(cat db.py | grep LIBID)
+touch  "./$LIB_NAME.py" # create the source file for the lib
+
+LIBID_RAW=$(cat "./lib/charm/$LIB_NAME/v0/$LIB_NAME.py" | grep LIBID)
 LIBID=${a#*LIBID = }  # extract LIBID
 
-echo "
-'''TEMPLATE: fill this in'''
+rm "./lib/charm/$LIB_NAME/v0/$LIB_NAME.py" # get rid of the lib file
 
-# The unique Charmhub library identifier, never change it
-LIBID = $LIBID
+function fill_in() {
+    sed -i "s/$2/$3/g" "$1"
+}
 
-# Increment this major API version when introducing breaking changes
-LIBAPI = {{ version }}
+# populate templates
+fill_in "\$LIBID" "$LIBID" "lib_template.jinja"
+fill_in "\$LIB_NAME" "$LIB_NAME" "./scripts/publish.sh"
+fill_in "\$LIB_NAME" "$LIB_NAME" "./scripts/inline-lib.sh"
+fill_in "\$LIB_NAME" "$LIB_NAME" "./metadata.yaml"
+fill_in "\$LIB_NAME" "$LIB_NAME" "./tox.ini"
 
-# Increment this PATCH version before using `charmcraft publish-lib` or reset
-# to 0 if you are raising the major API version
-LIBPATCH = {{ revision }}
-
-{{ py }}
-
-" > "lib_template.jinja"  # populate template
 
 echo "lib ready at lib/charms/$LIB_NAME/v0/$LIB_NAME! Happy coding."

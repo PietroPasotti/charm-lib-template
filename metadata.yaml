@@ -1,5 +1,5 @@
-name: relation-wrapper
+name: $LIB_NAME  # $ TEMPLATE: Filled in by ./scripts/init.sh
 description: |  
-  Container for the relation_wrapper charm lib.
+  Library charm for: $LIB_NAME
 summary: |
-  A charm lib to facilitate interacting with relation data.
+  Library charm for: $LIB_NAME

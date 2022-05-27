@@ -11,8 +11,8 @@ root = Path()
 
 
 def inline_lib():
-    print("Rendering endpoint_wrapper lib...")
-    py = root / "endpoint_wrapper.py"
+    print("Rendering $LIB_NAME lib...")
+    py = root / "$LIB_NAME.py"
     template = root / "lib_template.jinja"
 
     assert py.exists()
@@ -22,9 +22,9 @@ def inline_lib():
         root
         / "lib"
         / "charms"
-        / "relation_wrapper"
+        / "$LIB_NAME"  # $ TEMPLATE: Filled in by ./scripts/init.sh
         / f"v{__version__.version}"
-        / "endpoint_wrapper.py"
+        / "$LIB_NAME.py"  # $ TEMPLATE: Filled in by ./scripts/init.sh
     )
 
     if not lib_file.parent.exists():

@@ -1,2 +1,3 @@
 #!/usr/bin/env bash
-charmcraft publish-lib "charms.$LIB_NAME.v0.$LIB_NAME"  # $ TEMPLATE: Filled in by ./scripts/init.sh
+LIB_V=${LIB_VERSION:-$LIB_VERSION}
+charmcraft publish-lib "charms.$LIB_NAME.$LIB_V.$LIB_NAME"  # $ TEMPLATE: Filled in by ./scripts/init.sh

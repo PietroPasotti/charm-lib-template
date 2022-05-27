@@ -13,7 +13,6 @@ function fill_in() {
 }
 
 # populate templates
-fill_in "\$LIBID" "$LIBID" "lib_template.jinja"
 fill_in "\$LIB_NAME" "$LIB_NAME" "./scripts/publish.sh"
 fill_in "\$CHARM_NAME" "$CHARM_NAME" "./scripts/publish.sh"
 
@@ -33,6 +32,8 @@ touch  "./$LIB_NAME.py" # create the source file for the lib
 
 LIBID_RAW=$(cat "./lib/charm/$LIB_NAME/v0/$LIB_NAME.py" | grep LIBID)
 LIBID=${a#*LIBID = }  # extract LIBID
+
+fill_in "\$LIBID" "$LIBID" "lib_template.jinja"
 
 rm "./lib/charm/$LIB_NAME/v0/$LIB_NAME.py" # get rid of the lib file
 

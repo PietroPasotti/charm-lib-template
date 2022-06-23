@@ -6,6 +6,8 @@ LIB_VERSION="${3:-v0}"
 [ -z "$LIB_NAME" ] && echo "need to provide LIB_NAME as first argument" && exit 1
 [ -z "$CHARM_NAME" ] && echo "need to provide CHARM_NAME as second argument" && exit 1
 
+LIB_NAME=${LIB_NAME/-/_} # to be safe...
+
 echo "will initialize charm lib ${CHARM_NAME}:${LIB_NAME} (${LIB_VERSION})"
 
 function fill_in() {

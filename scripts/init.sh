@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+
+# abort on errors
+set -e
+
 CHARM_NAME=$1
 LIB_NAME=$2
 LIB_VERSION="${3:-v0}"
